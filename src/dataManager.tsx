@@ -7,14 +7,20 @@ import { useTodoStore } from "./stores/todoStore";
 
 export class DataManager {
 
-    /*constructor() {
+    base_url: string;
 
-    }*/
+
+    constructor() {
+      // base_url = 'http://localhost:3001';
+      this.base_url = 'https://taskbackend-rfwi.onrender.com'
+    }
+
+
 
     loadTasks() {
       if(useNetworkStore.getState().status === networkStatus.online){
         //load from server
-        fetch('http://localhost:3001/todos')
+        fetch( this.base_url + '/todos')
         .then( response => response.json() )
         .then( data => {
           console.log(data);
@@ -41,7 +47,7 @@ export class DataManager {
       if(useNetworkStore.getState().status === networkStatus.online){
         //add to server
         console.log("add to server");
-        fetch('http://localhost:3001/todos', {
+        fetch(this.base_url + '/todos', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -60,7 +66,7 @@ export class DataManager {
     removeTask(todo: todo) {
       if(useNetworkStore.getState().status === networkStatus.online){
         //remove from server
-        fetch('http://localhost:3001/todos/' + todo.id, {
+        fetch(this.base_url + '/todos/' + todo.id, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -80,7 +86,7 @@ export class DataManager {
         console.log("sync to server");
         const requests = useChangeStore.getState().offlineChanges.map(change => {
           if(change.type === ChangeType.AddTodo){
-            return fetch('http://localhost:3001/todos', {
+            return fetch(this.base_url + '/todos', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -91,7 +97,7 @@ export class DataManager {
             })
           }
           else if(change.type === ChangeType.RemoveTodo){
-            return fetch('http://localhost:3001/todos/' + change.data.id, {
+            return fetch(this.base_url + '/todos/' + change.data.id, {
               method: 'DELETE',
               headers: {
                 'Content-Type': 'application/json',

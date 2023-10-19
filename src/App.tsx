@@ -1,6 +1,6 @@
 import './App.css';
 import { networkStatus, useNetworkStore } from './stores/networkStore';
-import { todo, todoStore, useTodoStore } from './stores/todoStore';
+import { todo, useTodoStore } from './stores/todoStore';
 import { useEffect } from 'react';
 
 function App() {
