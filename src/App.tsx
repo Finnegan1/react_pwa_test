@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 function App() {
   let todoStore = useTodoStore();
   useNetworkStatus()
-  useLoadTodos(todoStore);
+  useLoadTodos();
 
   return (
     <div className="App">
@@ -34,10 +34,10 @@ function App() {
   );
 }
 
-function useLoadTodos(todoStore: todoStore) {
+function useLoadTodos() {
   useEffect(() => {
-    todoStore.loadTodos();
-  }, [todoStore]);
+    useTodoStore.getState().loadTodos();
+  }, []);
 }
 
 function useNetworkStatus() {
