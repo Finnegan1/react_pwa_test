@@ -1,6 +1,6 @@
 import './App.css';
 import { networkStatus, useNetworkStore } from './stores/networkStore';
-import { todo, useTodoStore } from './stores/todoStore';
+import { todo, todoStore, useTodoStore } from './stores/todoStore';
 import { useEffect } from 'react';
 
 function App() {
@@ -34,10 +34,10 @@ function App() {
   );
 }
 
-function useLoadTodos(todoStore: any) {
+function useLoadTodos(todoStore: todoStore) {
   useEffect(() => {
     todoStore.loadTodos();
-  }, []);
+  }, [todoStore]);
 }
 
 function useNetworkStatus() {

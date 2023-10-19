@@ -7,9 +7,9 @@ import { useTodoStore } from "./stores/todoStore";
 
 export class DataManager {
 
-    constructor() {
+    /*constructor() {
 
-    }
+    }*/
 
     loadTasks() {
       if(useNetworkStore.getState().status === networkStatus.online){
@@ -98,6 +98,10 @@ export class DataManager {
               },
             }).then(response => {
               response.ok ? useChangeStore.getState().removeChange(change) : console.log("error");
+            })
+          }else{
+            return new Promise((resolve, reject) => {
+              resolve('');
             })
           }
         })

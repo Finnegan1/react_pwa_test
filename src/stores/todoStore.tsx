@@ -12,7 +12,7 @@ export type todo = {
   completed: boolean
 }
 
-type todoStore = {
+export type todoStore = {
   todos: todo[],
   addTodo: (todo: todo) => void
   removeTodo: (todo: todo) => void
